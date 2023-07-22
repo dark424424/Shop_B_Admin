@@ -1,0 +1,40 @@
+<section class="login-container">
+  <div class="form-box">
+    <div class="form-value">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Đăng Nhập</h2>
+        <div class="login-input-container">
+          <div class="inputbox">
+            <mat-icon class="input-icon">person</mat-icon>
+            <input
+              type="text"
+              formControlName="username"
+              required
+              (blur)="checkValidate('username')"
+            />
+            <label for="">Tài Khoản</label>
+          </div>
+          <div *ngIf="userInputMessage" class="error-message">
+            <p>{{ userInputMessage }}</p>
+          </div>
+        </div>
+        <div class="login-input-container">
+          <div class="inputbox">
+            <mat-icon class="input-icon">lock_open</mat-icon>
+            <input
+              type="password"
+              formControlName="password"
+              required
+              (blur)="checkValidate('password')"
+            />
+            <label for="">Mật Khẩu</label>
+          </div>
+          <div *ngIf="passwordInputMessage" class="error-message">
+            <p>{{ passwordInputMessage }}</p>
+          </div>
+        </div>
+        <button class="login-button" type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
+</section>

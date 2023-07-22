@@ -1,0 +1,27 @@
+.logo {
+    font-weight: bold;
+    list-style: none;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Kaushan Script', cursive;
+    color: white;
+    
+}
+.topbar-container {
+    width: 100%;
+    background-color: teal;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    margin: 0;
+    padding: 10px;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

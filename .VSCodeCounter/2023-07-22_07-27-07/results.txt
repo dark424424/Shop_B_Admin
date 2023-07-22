@@ -1,0 +1,51 @@
+Date : 2023-07-22 07:27:07
+Directory : f:\do_an\shop-admin\src\app\component
+Total : 20 files,  763 codes, 41 comments, 132 blanks, all 936 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| TypeScript |         10 |        384 |         32 |         94 |        510 |
+| HTML       |          5 |        218 |          9 |          9 |        236 |
+| CSS        |          5 |        161 |          0 |         29 |        190 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |         20 |        763 |         41 |        132 |        936 |
+| chart                                                                             |          4 |        282 |         12 |         45 |        339 |
+| feature-info                                                                      |          4 |        135 |          0 |         25 |        160 |
+| paging                                                                            |          4 |        164 |         29 |         34 |        227 |
+| sidebar                                                                           |          4 |        124 |          0 |         16 |        140 |
+| topbar                                                                            |          4 |         58 |          0 |         12 |         70 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                          | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| f:\do_an\shop-admin\src\app\component\chart\chart.component.css                   | CSS        |         38 |          0 |          8 |         46 |
+| f:\do_an\shop-admin\src\app\component\chart\chart.component.html                  | HTML       |         53 |          9 |          5 |         67 |
+| f:\do_an\shop-admin\src\app\component\chart\chart.component.spec.ts               | TypeScript |         18 |          0 |          6 |         24 |
+| f:\do_an\shop-admin\src\app\component\chart\chart.component.ts                    | TypeScript |        173 |          3 |         26 |        202 |
+| f:\do_an\shop-admin\src\app\component\feature-info\feature-info.component.css     | CSS        |         42 |          0 |          8 |         50 |
+| f:\do_an\shop-admin\src\app\component\feature-info\feature-info.component.html    | HTML       |         54 |          0 |          1 |         55 |
+| f:\do_an\shop-admin\src\app\component\feature-info\feature-info.component.spec.ts | TypeScript |         18 |          0 |          6 |         24 |
+| f:\do_an\shop-admin\src\app\component\feature-info\feature-info.component.ts      | TypeScript |         21 |          0 |         10 |         31 |
+| f:\do_an\shop-admin\src\app\component\paging\paging.component.css                 | CSS        |         24 |          0 |          5 |         29 |
+| f:\do_an\shop-admin\src\app\component\paging\paging.component.html                | HTML       |         44 |          0 |          1 |         45 |
+| f:\do_an\shop-admin\src\app\component\paging\paging.component.spec.ts             | TypeScript |         18 |          0 |          6 |         24 |
+| f:\do_an\shop-admin\src\app\component\paging\paging.component.ts                  | TypeScript |         78 |         29 |         22 |        129 |
+| f:\do_an\shop-admin\src\app\component\sidebar\sidebar.component.css               | CSS        |         32 |          0 |          6 |         38 |
+| f:\do_an\shop-admin\src\app\component\sidebar\sidebar.component.html              | HTML       |         60 |          0 |          1 |         61 |
+| f:\do_an\shop-admin\src\app\component\sidebar\sidebar.component.spec.ts           | TypeScript |         18 |          0 |          6 |         24 |
+| f:\do_an\shop-admin\src\app\component\sidebar\sidebar.component.ts                | TypeScript |         14 |          0 |          3 |         17 |
+| f:\do_an\shop-admin\src\app\component\topbar\topbar.component.css                 | CSS        |         25 |          0 |          2 |         27 |
+| f:\do_an\shop-admin\src\app\component\topbar\topbar.component.html                | HTML       |          7 |          0 |          1 |          8 |
+| f:\do_an\shop-admin\src\app\component\topbar\topbar.component.spec.ts             | TypeScript |         18 |          0 |          6 |         24 |
+| f:\do_an\shop-admin\src\app\component\topbar\topbar.component.ts                  | TypeScript |          8 |          0 |          3 |         11 |
+| Total                                                                             |            |        763 |         41 |        132 |        936 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

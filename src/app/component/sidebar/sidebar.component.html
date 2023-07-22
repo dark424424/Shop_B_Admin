@@ -1,0 +1,60 @@
+<div class="sidebar-container">
+  <div class="wrapper">
+    <div class="menu">
+      <div class="title">Cài Đặt</div>
+      <ul class="list">
+        <li class="item" routerLink="/">
+          <mat-icon>home</mat-icon>
+          Trang Chủ
+        </li>
+        <li class="item" (click)="logout()">
+          <mat-icon>remove_circle_outline</mat-icon>
+          Đăng Xuất
+        </li>
+      </ul>
+    </div>
+    <div class="menu">
+      <div class="title">Đơn hàng</div>
+      <ul class="list">
+        <li class="item" routerLink="/order/open">
+          <mat-icon>assignment_late</mat-icon>
+          Các đơn hàng cần duyệt
+        </li>
+        <li class="item" routerLink="/order/inprogress">
+          <mat-icon>book</mat-icon>
+          Các đơn hàng đang xử lý
+        </li>
+        <li class="item" routerLink="/order/history">
+          <mat-icon>history</mat-icon>
+          Lịch sử đơn hàng
+        </li>
+      </ul>
+    </div>
+    <div class="menu">
+      <div class="title">Sản Phẩm</div>
+      <ul class="list">
+        <li class="item" routerLink="/productlist">
+          <mat-icon>list</mat-icon>
+          Danh sách sản phẩm
+        </li>
+        <li class="item" routerLink="/addproduct">
+          <mat-icon>note_add</mat-icon>
+          Thêm Sản Phẩm
+        </li>
+        <li class="item" routerLink="/recommedoutofstock">
+          <mat-icon>warning</mat-icon>
+          Các sản phẩm cần bổ sung
+        </li>
+      </ul>
+    </div>
+    <div class="menu">
+      <div class="title">Khách Hàng</div>
+      <ul class="list">
+        <li class="item" routerLink="/user/list">
+          <mat-icon> list_alt</mat-icon>
+          Danh sách khách hàng
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

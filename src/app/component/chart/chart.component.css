@@ -1,0 +1,45 @@
+.charts{
+
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.pie-chart {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.pie-container{
+    flex: 1;
+    box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    -webkit-box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    -moz-box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    position: relative;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+}
+
+.right-dropdown {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 5px;
+}
+
+.line{
+    flex: 1;
+    box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    -webkit-box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    -moz-box-shadow: 1px -3px 17px -2px rgba(0, 0, 0, 0.58);
+    position: relative;
+}

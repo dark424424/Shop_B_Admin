@@ -1,0 +1,44 @@
+<div>
+  <ul class="pagination">
+    <li (click)="onPreviousPage()">
+      <a><i class="fa fa-chevron-left"></i></a>
+    </li>
+    <ng-container *ngIf="pagingType === 'bottom'">
+      <ng-container *ngIf="totalPages <= 4">
+        <li
+          *ngFor="let page of pages"
+          [class.active]="currentPage === page"
+          (click)="onPageClick(page)"
+        >
+          <a>{{ page }}</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="totalPages > 4">
+        <li *ngIf="currentPage >= 3">
+          <a>...</a>
+        </li>
+        <li
+          *ngFor="let page of visiblePages"
+          [class.active]="currentPage === page"
+          (click)="onPageClick(page)"
+        >
+          <a>{{ page }}</a>
+        </li>
+        <li *ngIf="currentPage < totalPages - 2">
+          <a>...</a>
+        </li>
+        <li *ngIf="currentPage < totalPages - 1">
+          <a (click)="onPageClick(totalPages)">{{ totalPages }}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="pagingType === 'top'">
+      <li>
+        <a>{{ currentPage }}/{{ totalPages }}</a>
+      </li>
+    </ng-container>
+    <li (click)="onNextPage()">
+      <a><i class="fa fa-chevron-right"></i></a>
+    </li>
+  </ul>
+</div>

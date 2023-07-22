@@ -1,0 +1,66 @@
+<div class="charts">
+  <div class="pie-chart">
+    <div class="pie-container mr20">
+      <div class="pie" [chart]="pieChartCategorySoldCount"></div>
+      <select
+        class="dropdown"
+        [(ngModel)]="selectedMonthCategorySoldCount"
+        (change)="onChangeMonthSoldCount()"
+      >
+        <option disabled selected value="">--Lựa Chọn Thời Gian--</option>
+        <option *ngFor="let brand of monthDropdown" [ngValue]="brand.value">
+          {{ brand.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="pie-container">
+      <div class="pie" [chart]="pieChartCategoryRevenue"></div>
+      <select
+        class="dropdown"
+        [(ngModel)]="selectedMonthCategoryRevenue"
+        (change)="onChangeMonthRevenue()"
+      >
+        <option disabled selected value="">--Lựa Chọn Thời Gian--</option>
+        <option *ngFor="let brand of monthDropdown" [ngValue]="brand.value">
+          {{ brand.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="line">
+    <div [chart]="lineChart"></div>
+
+    <select
+      class="dropdown"
+      [(ngModel)]="selectedMonthLineChart"
+      (change)="onChangeMonthLine()"
+    >
+      <option disabled selected value="">--Lựa Chọn Thời Gian--</option>
+      <option *ngFor="let brand of monthDropdown" [ngValue]="brand.value">
+        {{ brand.name }}
+      </option>
+    </select>
+    <select
+      class="right-dropdown"
+      [(ngModel)]="selectedCat"
+      (change)="onChangeCat()"
+    >
+      <option disabled selected value="">--Lựa Chọn Loại Hàng--</option>
+      <option *ngFor="let brand of catDropdown" [ngValue]="brand.value">
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<!-- <select
+  [(ngModel)]="selectedMonthCategorySoldCount"
+  (change)="onChangeMonthSoldCount()"
+>
+  <option disabled selected value="">--Lựa Chọn Thời Gian--</option>
+  <option *ngFor="let brand of monthDropdown" [ngValue]="brand.value">
+    {{ brand.name }}
+  </option>
+</select> -->

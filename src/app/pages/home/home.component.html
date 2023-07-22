@@ -1,0 +1,22 @@
+<div class="home-container">
+  <app-feature-info
+    [thisMonthSales]="thisMonthSale"
+    [lastMonthSales]="lastMonthSale"
+    [prevMonthSales]="prevMonthSale"
+    [openOrderCount]="openOrdercount"
+    [outOfStockCount]="outOfStockCount"
+    [inprogressCount]="inprogressCount"
+  ></app-feature-info>
+  <app-chart
+    [incomeList]="incomeList"
+    [categoryRevenue]="categoryRevenue"
+    [categorySoldCount]="categorySoldCount"
+    [lineChartTitle]="lineChartTitle"
+    [pie1Title]="pie1ChartTitle"
+    [pie2Title]="pie2ChartTitle"
+    (ChangePie1Month)="changeOrderCountMonthPie($event)"
+    (ChangePie2Month)="changeRevenueCountMonthPie($event)"
+    (ChangeLineMonth)="changeLineMonth($event)"
+    (ChangeLineCategory)="changeLineCat($event)"
+  ></app-chart>
+</div>

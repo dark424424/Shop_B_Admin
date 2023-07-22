@@ -1,0 +1,58 @@
+<div class="user-container">
+  <div class="order-body">
+    <div class="title" *ngIf="count > 0">Danh sách các đơn hàng đang xử lý</div>
+    <div class="title" *ngIf="count === 0">
+      Hiện Tại Không Có Đơn Hàng Nào Đang Xử Lý
+    </div>
+    <div class="order-wrapper">
+      <ng-container *ngFor="let item of orderListWithNewTitle; let i = index">
+        <div class="order-item">
+          <div class="order-title">
+            <span [routerLink]="'/order/detail/' + item._id">
+              Đơn Hàng {{ item.titleOrder }}
+            </span>
+          </div>
+          <div class="order-item-body">
+            <div class="order-address">
+              Giao Đến : {{ item.address.address }} Thành Phố
+              {{ item.address.city }}
+            </div>
+            <div class="order-price">
+              Tổng giá tiền : {{ item.amount.toLocaleString() }} VND
+            </div>
+          </div>
+          <div class="body">
+            <div class="body-title">Sản Phẩm Muốn Mua :</div>
+            <div class="product-item" *ngFor="let product of item.products">
+              <div
+                class="small-title"
+                [routerLink]="'/product/' + product.productId._id"
+              >
+                {{ product.productId.title }}
+              </div>
+              <div class="quantity">Số lượng : {{ product.quantity }}</div>
+              <div class="instock">
+                Tồn Kho : {{ product.productId.inStock }}
+              </div>
+            </div>
+          </div>
+          <div class="order-footer">
+            <div class="order-receiver">
+              Tên người nhận hàng : {{ item.consignee }}
+            </div>
+            <div class="order-date">Ngày đặt hàng: {{ item.createdAt }}</div>
+            <div class="status">
+              <span>Trạng Thái Đơn Hàng: </span>
+              <div
+                class="order-status"
+                [ngStyle]="getStatusStyles(item.status)"
+              >
+                {{ item.statusTitle }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

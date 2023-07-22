@@ -1,0 +1,141 @@
+<div class="add-wrapper">
+  <div class="add-title">Thêm Sản Phẩm</div>
+
+  <div class="add-title-cat">
+    <div class="add-container">
+      <span>Tên Sản Phẩm :</span>
+      <input [(ngModel)]="title" type="text" placeholder="Điền tên sản phấm" />
+    </div>
+    <div class="add-container">
+      <span>Loại Mặt Hàng :</span>
+      <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option disabled selected value="">--Lựa Chọn Thể Loại--</option>
+        <option
+          *ngFor="let category of catDropDownData"
+          [ngValue]="category.value"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="add-title-cat">
+    <div class="add-container">
+      <span>--Tên Thương Hiệu--</span>
+      <select [(ngModel)]="selectedBrand" (change)="onBrandChange()">
+        <option disabled selected value="">--Lựa Chọn Thương Hiệu--</option>
+        <option *ngFor="let brand of brandDropDownData" [ngValue]="brand.value">
+          {{ brand.name }}
+        </option>
+      </select>
+    </div>
+    <div class="add-container">
+      <span>Giá Tiền : </span>
+      <input [(ngModel)]="priceValue" type="number" class="custom-input" />
+    </div>
+  </div>
+  <div class="add-info-container">
+    <span>Các chính sách :</span>
+    <select [(ngModel)]="selectedInfo" (change)="onChangeInfoDropDown()">
+      <option disabled selected value="">
+        --Lựa Chọn Các Chính Sách Có Sẵn--
+      </option>
+      <option *ngFor="let info of infoDropDownData" [ngValue]="info.value">
+        {{ info.value }}
+      </option>
+    </select>
+    <div class="add-info-input">
+      <input
+        [(ngModel)]="infoText"
+        type="text"
+        placeholder="Điền Chính Sách Mới"
+      />
+      <button (click)="addItemToList()" class="btn">Thêm</button>
+    </div>
+  </div>
+
+  <div class="list-info" *ngIf="infoList.length > 0">
+    <span>Bạn đã chọn :</span>
+    <ul class="list" *ngFor="let info of infoList">
+      <li class="list-item">
+        <span>{{ info }}</span>
+        <mat-icon class="icon" (click)="deleteItem(info)">close</mat-icon>
+      </li>
+    </ul>
+  </div>
+
+  <div class="file-container">
+    <span>Hình Ảnh Sản Phẩm : </span>
+    <input
+      type="file"
+      (change)="onFileChange($event)"
+      id="file-input"
+      class="input-file"
+    />
+    <label for="file-input" class="file-input-label">Hãy Chọn Một File</label>
+  </div>
+
+  <div class="img-container" *ngIf="productImg">
+    <img [src]="productImg" *ngIf="productImg" class="img" />
+  </div>
+
+  <div class="desc-container">
+    <span>Miêu tả sản phẩm</span>
+    <ngx-editor
+      [editor]="editor"
+      [(ngModel)]="descText"
+      class="editor"
+      placeholder="Miêu Tả Sản Phẩm Của Bạn"
+    ></ngx-editor>
+  </div>
+
+  <!-- <div [innerHTML]="descText"></div> -->
+
+  <div class="add-tech-info">
+    <span>Thông Số Kỹ Thuật</span>
+    <div *ngIf="sections.length > 0" class="table-wrapper">
+      <table *ngFor="let section of sections">
+        <!-- <h3>{{ section.title }}</h3>
+        <div *ngFor="let info of section.info">
+          <label>{{ info.name }}</label>
+          <input [(ngModel)]="info.value" type="text" />
+        </div> -->
+        <tr class="table-title-container">
+          <th class="table-title">{{ section.title }}</th>
+        </tr>
+        <tr *ngFor="let row of section.info" class="table-detail-container">
+          <td class="table-detail-name">
+            <strong>{{ row.name }}</strong>
+          </td>
+          <td class="table-detail-value">
+            <input [(ngModel)]="row.value" type="text" />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="submit-wrapper">
+    <button class="submit-button" (click)="createProduct()">
+      Tạo Sản Phẩm
+    </button>
+  </div>
+</div>
+
+<!-- <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+  <option *ngFor="let category of catDropDownData" [ngValue]="category.value">
+    {{ category.name }}
+  </option>
+</select>
+
+<div *ngIf="sections.length > 0">
+  <div *ngFor="let section of sections">
+    <h3>{{ section.title }}</h3>
+    <div *ngFor="let info of section.info">
+      <label>{{ info.name }}</label>
+      <input [(ngModel)]="info.value" type="text" />
+    </div>
+  </div>
+</div>
+<button (click)="checkValue()">Checking</button> -->

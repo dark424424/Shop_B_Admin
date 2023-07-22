@@ -1,0 +1,39 @@
+<div class="popup-container">
+  <div class="title">Lý do hủy đơn</div>
+  <select [(ngModel)]="type">
+    <option disabled selected value="">--Phân Loại Lý Do--</option>
+    <option *ngFor="let info of typelist" [ngValue]="info.value">
+      {{ info.name }}
+    </option>
+  </select>
+
+  <select
+    *ngIf="type === 0"
+    [(ngModel)]="selectedReason"
+    (change)="onChangeInfoDropDown()"
+  >
+    <option disabled selected value="">--Lựa Chọn Lý Do Hủy Đơn--</option>
+    <option *ngFor="let info of reasonDropDownData" [ngValue]="info">
+      {{ info }}
+    </option>
+  </select>
+
+  <select
+    *ngIf="type === 1"
+    [(ngModel)]="selectedReason"
+    (change)="onChangeInfoDropDown()"
+  >
+    <option disabled selected value="">--Lựa Chọn Lý Do Hủy Đơn--</option>
+    <option *ngFor="let info of reasonUserDropDownData" [ngValue]="info">
+      {{ info }}
+    </option>
+  </select>
+  <div *ngIf="type !== ''" class="input-container">
+    <input type="text" placeholder="Điền Lý Do" [(ngModel)]="reason" />
+    <span *ngIf="error">{{ error }}</span>
+  </div>
+  <div class="btn-container" *ngIf="type !== ''">
+    <div class="button" (click)="sentDataback()">Xác Nhận</div>
+    <div class="button" (click)="closePopup()">Quay Lại</div>
+  </div>
+</div>

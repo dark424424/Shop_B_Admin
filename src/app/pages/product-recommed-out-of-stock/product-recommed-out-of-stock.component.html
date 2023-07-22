@@ -1,0 +1,35 @@
+<div class="productlist-container">
+  <div class="title">Danh Sách Sản Phẩm Cần Bổ Sung</div>
+  <div class="product-container">
+    <div class="not-found" *ngIf="count === 0">
+      Không Có Sản Phẩm Nào Cần Bổ Sung
+    </div>
+    <ul class="product-list">
+      <li class="product-item" *ngFor="let product of productList">
+        <div class="name">
+          <div class="product-title" [routerLink]="'/product/' + product.id">
+            {{ product.title }}
+          </div>
+          <div class="id">ID sản phẩm : {{ product.id }}</div>
+        </div>
+        <div class="body">
+          <div class="img-container">
+            <img [src]="product.img" alt="" class="img" />
+          </div>
+          <div class="price">
+            Đã bán {{ product.sold }} sản phẩm trong khoảng
+            {{ product.timeDiff }} Ngày
+          </div>
+          <div class="count">Số Hàng Hiện Tại : {{ product.inStock }}</div>
+        </div>
+        <div class="footer">
+          <span *ngIf="product.inStock !== 0"
+            >Dự tính hết hàng trong khoảng :
+            {{ product.remainingDay }} ngày</span
+          >
+          <span *ngIf="product.inStock === 0">Đã hết hàng</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

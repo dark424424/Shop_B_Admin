@@ -1,0 +1,24 @@
+<!-- <div class="popup-error">
+    <p>{{ message }}</p>
+    <button (click)="closePopup()">Tiếp tục</button>
+  </div> -->
+
+<div class="modal_wrapper">
+      <div class="modal_item e_modal">
+        <div class="close close_btn" (click)="closePopup()">
+            <mat-icon>close</mat-icon>
+        </div>
+        <div class="modal_body">
+          <div class="s_icon">
+            <mat-icon>help_outline</mat-icon>
+        </div>
+        <div class="s_text">
+          <h2>ERROR</h2>
+          <p>{{message}}</p>
+        </div>
+        </div>
+        <div class="s_button">
+          <button class="error_btn" (click)="closePopup()">Quay Lại</button>
+        </div>
+      </div>
+</div>

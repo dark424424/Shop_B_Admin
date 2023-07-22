@@ -1,0 +1,53 @@
+<div class="history-container">
+  <div class="filter-container">
+    <div class="text">Lựa chọn trạng thái đơn hàng :</div>
+    <select [(ngModel)]="selectedStatus" (change)="onChangeDropDown()">
+      <option disabled selected value="">--Trạng Thái Đơn Hàng--</option>
+      <option *ngFor="let status of statusDropDown" [ngValue]="status.value">
+        {{ status.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="order-container">
+    <div class="title">Danh Sách Đơn Hàng</div>
+    <ul class="order-list">
+      <li class="order-item" *ngFor="let item of orderListWithNewStatus">
+        <div class="top">
+          <div class="order-id">
+            ID đơn hàng :
+            <span [routerLink]="'/order/detail/' + item._id">{{
+              item._id
+            }}</span>
+          </div>
+          <div class="user-id">
+            ID người đặt hàng : <span>{{ item.userId }}</span>
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <div class="order-receiver">
+            Tên người nhận hàng : {{ item.consignee }}
+          </div>
+          <div class="order-date">Ngày đặt hàng: {{ item.createdAt }}</div>
+          <div class="status">
+            <span>Trạng Thái Đơn Hàng: </span>
+            <div class="order-status" [ngStyle]="getStatusStyles(item.status)">
+              {{ item.statusTitle }}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <app-paging
+      *ngIf="total !== 0"
+      [total]="total"
+      [numberPerPage]="itemsPerPage"
+      (ChangePage)="handlePageClick($event)"
+      [pagingType]="'bottom'"
+      [currentPage]="pageIndex"
+      class="search-bot-paging"
+    >
+    </app-paging>
+  </div>
+</div>

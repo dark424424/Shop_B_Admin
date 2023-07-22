@@ -1,0 +1,15 @@
+<div class="popup-container">
+  <div class="title">Nhập Hàng</div>
+  <div class="input-container">
+    <input
+      type="number"
+      placeholder="Số Lượng Hàng Muốn Nhập"
+      [(ngModel)]="quantity"
+    />
+    <span *ngIf="error">{{ error }}</span>
+  </div>
+  <div class="btn-container">
+    <div class="button" (click)="sentDataback()">Xác Nhận</div>
+    <div class="button" (click)="closePopup()">Quay Lại</div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="user-list-container">
+  <div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Tìm Kiếm Theo Tên Tài Khoản Người Dùng và Tên Khách Hàng"
+      [(ngModel)]="text"
+    />
+    <mat-icon
+      class="search-button"
+      style="cursor: pointer; font-size: 16; margin: '5px'; color: 'gray'"
+      (click)="onSearchClick()"
+      >search</mat-icon
+    >
+  </div>
+
+  <div class="filter-container">
+    <select
+      [(ngModel)]="selectedSort"
+      class="select-container"
+      (change)="filterChange()"
+    >
+      <option selected value="">--Sắp Xếp Theo--</option>
+      <option *ngFor="let brand of sortDropdownData" [ngValue]="brand.value">
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="product-container">
+    <div class="title">Danh Sách Người Dùng</div>
+    <div class="not-found" *ngIf="total === 0">
+      Không Tìm Thấy Người Dùng Phù Hợp
+    </div>
+
+    <table>
+      <tr class="table-title-container">
+        <th class="table-title">Tài Khoản</th>
+        <th class="table-title">Tên Khách Hàng</th>
+        <th class="table-title">Số Điện Thoại</th>
+        <th class="table-title-center">Số Đơn Đã Đặt</th>
+        <th class="table-title-center">Số Đơn Thành Công</th>
+        <th class="table-title-center">Số Đơn Bị Hủy Do Cửa Hàng</th>
+        <th class="table-title-center">Số Đơn Bị Hủy Do Người Dùng</th>
+        <th class="table-title-center">Trạng Thái</th>
+      </tr>
+      <tr *ngFor="let row of userList" class="table-detail-container">
+        <td class="table-td-left">
+          <div
+            class="table-detail-title"
+            [routerLink]="'/user/detail/' + row._id"
+          >
+            {{ row.username }}
+          </div>
+        </td>
+        <td class="table-td-left">
+          <div
+            class="table-detail-title"
+            [routerLink]="'/user/detail/' + row._id"
+          >
+            {{ row.name }}
+          </div>
+        </td>
+        <td class="table-td-left">
+          <div class="table-detail-name">
+            {{ row.phoneNumber }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.orderInfo.createOrderCount }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.orderInfo.doneOrderCount }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.orderInfo.cancelByShopOrderCount }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.orderInfo.cancelByUserOrderCount }}
+            (
+            {{
+              row.orderInfo.createOrderCount !== 0
+                ? (row.orderInfo.cancelByUserOrderCount /
+                    row.orderInfo.createOrderCount) *
+                  100
+                : 0
+            }}%)
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            <span [style.backgroundColor]="row.isDisable ? 'gray' : 'teal'">{{
+              row.isDisable ? "Vô Hiệu Hóa" : "Bình thường"
+            }}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <app-paging
+      *ngIf="total !== 0"
+      [total]="total"
+      [numberPerPage]="itemsPerPage"
+      (ChangePage)="handlePageClick($event)"
+      [pagingType]="'bottom'"
+      [currentPage]="pageIndex"
+      class="search-bot-paging"
+    >
+    </app-paging>
+  </div>
+</div>

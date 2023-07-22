@@ -1,0 +1,54 @@
+<div class="big-container">
+  <div class="feature-container">
+    <div class="item">
+      <div class="title">Doanh Số Bán Hàng Tháng 6</div>
+      <div class="money-container">
+        <span class="money">{{ lastMonthSales.toLocaleString() }} VND</span>
+        <span class="moneyrate">
+          {{ percent }} %
+          <ng-container *ngIf="percent < 0; else positiveCase">
+            <div class="icon">
+              <mat-icon style="color: red">arrow_downward</mat-icon>
+            </div>
+          </ng-container>
+          <ng-template #positiveCase>
+            <div class="icon" color="green">
+              <mat-icon style="color: green">arrow_upward</mat-icon>
+            </div>
+          </ng-template>
+        </span>
+      </div>
+      <div class="subtitle">So với tháng 5</div>
+    </div>
+    <div class="item">
+      <div class="title">Doanh Số Tháng Này</div>
+      <div class="money-container">
+        <div class="money">{{ thisMonthSales.toLocaleString() }} VND</div>
+      </div>
+      <div class="subtitle">Đến thời điểm hiện tại</div>
+    </div>
+    <div class="item">
+      <div class="title">Số lượng :</div>
+      <div class="money-container">
+        <div class="money">{{ outOfStockCount }}</div>
+      </div>
+      <div class="subtitle">Sản Phẩm Hết Hàng</div>
+    </div>
+  </div>
+  <div class="feature-container">
+    <div class="item">
+      <div class="title">Đơn Hàng Chờ Được Duyệt</div>
+      <div class="money-container">
+        <div class="money">{{ openOrderCount }}</div>
+      </div>
+      <div class="subtitle">Cần được xử lý</div>
+    </div>
+    <div class="item">
+      <div class="title">Đơn Hàng Đang Xử Lý</div>
+      <div class="money-container">
+        <div class="money">{{ inprogressCount }}</div>
+      </div>
+      <div class="subtitle">Đang xử lý</div>
+    </div>
+  </div>
+</div>

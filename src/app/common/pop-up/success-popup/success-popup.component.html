@@ -1,0 +1,19 @@
+<div class="modal_wrapper">
+  <div class="modal_item e_modal">
+    <div class="close close_btn" (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </div>
+    <div class="modal_body">
+      <div class="s_icon">
+        <mat-icon>check</mat-icon>
+      </div>
+      <div class="s_text">
+        <h2>Thành Công</h2>
+        <p>{{ message }}</p>
+      </div>
+    </div>
+    <div class="success_button_wrapper">
+      <button class="success_button" (click)="closePopup()">Quay Lại</button>
+    </div>
+  </div>
+</div>

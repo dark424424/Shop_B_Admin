@@ -1,0 +1,103 @@
+<div class="order-container">
+  <h1>Chi tiết đơn hàng</h1>
+
+  <div class="order-details">
+    <h2>
+      Tên đơn hàng: <span id="order-name">{{ orderTitle }}</span>
+    </h2>
+    <h3 *ngIf="order">Id đơn hàng : {{ order._id }}</h3>
+    <h3>Chi tiết đơn hàng:</h3>
+    <ul id="order-items">
+      <table>
+        <tbody>
+          <tr *ngFor="let product of order.products" class="order-item">
+            <td class="product-title">
+              <a [routerLink]="'/product/' + product.productId._id">
+                {{ product.productId.title }}
+              </a>
+            </td>
+            <td class="product-quantity">Số lượng: {{ product.quantity }}</td>
+            <td class="product-price">
+              Tổng giá tiền: {{ product.totalPrice }} VND
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+    <p class="order-total">
+      Tổng cộng:
+      <span id="total-price">{{ order?.amount?.toLocaleString() }} VND</span>
+    </p>
+    <h3>Thông tin người nhận:</h3>
+    <div class="user-info">
+      <p>
+        Id khách hàng: <span id="recipient-id">{{ order.userId }}</span>
+      </p>
+      <p>
+        Tên người nhận: <span id="recipient-name">{{ order.consignee }}</span>
+      </p>
+      <p>
+        Địa chỉ nhận:
+        <span id="recipient-address"
+          >{{ order?.address?.address }}, Thành Phố
+          {{ order?.address?.city }}</span
+        >
+      </p>
+      <p>
+        Số điện thoại liên hệ:
+        <span id="recipient-address">{{ order.phoneNumber }}</span>
+      </p>
+    </div>
+    <div *ngIf="order.note" class="order-note">Ghi Chú : {{ order.note }}</div>
+    <div *ngIf="!order.note" class="order-note">Không có ghi chú</div>
+    <h3>
+      <span class="order-date">Đặt hàng vào lúc: {{ dateTitle }}</span>
+      <div class="status">
+        Trạng thái đơn hàng
+        <span class="order-status" [ngStyle]="getStatusStyles(order.status)">
+          {{ setStatus(order.status) }}
+        </span>
+      </div>
+    </h3>
+
+    <div [ngSwitch]="order.status" class="footer">
+      <div *ngSwitchCase="'Open'" class="footer-container">
+        <div class="verify-container">
+          <button class="verify-btn" (click)="verifyOrder()">Duyệt Đơn</button>
+          <button class="verify-btn" (click)="cancelOrder()">Hủy Đơn</button>
+        </div>
+      </div>
+      <div *ngSwitchCase="'Inprogress'" class="footer-container">
+        <div class="file-container">
+          <span>Bằng chứng Giao Hàng : </span>
+          <input
+            type="file"
+            (change)="onFileChange($event)"
+            id="file-input"
+            class="input-file"
+          />
+          <label for="file-input" class="file-input-label"
+            >Hãy Chọn Một File</label
+          >
+          <div class="img-container" *ngIf="productImg">
+            <img [src]="productImg" *ngIf="productImg" class="img" />
+          </div>
+        </div>
+        <div class="verify-container">
+          <button class="verify-btn" (click)="doneOrder()">Hoàn Thành</button>
+          <button class="verify-btn" (click)="cancelOrder()">Hủy Đơn</button>
+        </div>
+      </div>
+      <div *ngSwitchCase="'Done'" class="footer-container">
+        <div class="verify-container">
+          <div class="img-container" *ngIf="order.evidence">
+            <img [src]="order.evidence" *ngIf="order.evidence" class="img" />
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'Cancelled'" class="footer-container">
+        <div class="verify-container">Lý Do Hủy : {{ order.cancelReason }}</div>
+      </div>
+    </div>
+  </div>
+</div>

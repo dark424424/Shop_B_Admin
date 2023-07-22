@@ -1,0 +1,11 @@
+<ng-container *ngIf="!isLoginPage">
+  <app-topbar></app-topbar>
+  <div class="wrapper">
+    <div class="side-bar"><app-sidebar></app-sidebar></div>
+    <div class="page">
+      <router-outlet (activate)="onActive()"></router-outlet>
+    </div>
+  </div>
+</ng-container>
+
+<router-outlet *ngIf="isLoginPage"></router-outlet>

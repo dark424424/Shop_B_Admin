@@ -1,0 +1,22 @@
+a {
+    list-style: none;
+    
+}
+
+ul {
+    list-style: none;
+
+}
+
+.active {
+    display: flex !important;
+}
+
+body {
+    background:#1D212B
+}
+
+* {
+    box-sizing : border-box;
+    font-family: 'Roboto', sans-serif;
+}

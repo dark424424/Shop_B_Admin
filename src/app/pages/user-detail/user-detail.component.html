@@ -1,0 +1,173 @@
+<div class="user-container">
+  <div class="title">Thông Tin Khách Hàng</div>
+
+  <div class="user-info" *ngIf="user">
+    <section class="user-detail">
+      <div class="left">
+        <h1 class="name">
+          <span class="user-name"> Tên Khách Hàng : {{ user.name }}</span>
+          <div class="place" *ngIf="user.location.city !== ''">
+            <mat-icon class="icon"> location_on</mat-icon>
+            <span>Thành Phố {{ user.location.city }}</span>
+          </div>
+        </h1>
+        <div class="status-container">
+          Trạng thái tài khoản :
+          <span [ngStyle]="getStatusStyles(user.isDisable)">{{
+            user.isDisable ? "Vô Hiệu Hóa" : "Bình Thường"
+          }}</span>
+        </div>
+
+        <div class="status-container">
+          Ngày Tạo Tài Khoản :
+          <span class="date">{{ convertDate() }}</span>
+        </div>
+
+        <div class="status-container">
+          Tên Tài Khoản :
+          <span class="date">{{ user.username }}</span>
+        </div>
+
+        <div class="status-container">
+          <button *ngIf="!user.isDisable" (click)="disableAccount()">
+            Vô Hiệu Hóa Tài Khoản
+          </button>
+          <button *ngIf="user.isDisable" (click)="activeAccount()">
+            Tái Kích Hoạt Tài Khoản
+          </button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="right-title">Thông Tin Đơn Hàng</div>
+        <ul class="order-count">
+          <li class="order-item">Số đơn đã đặt : {{ user.countOrder }}</li>
+          <li class="order-item">
+            Số đơn đã hoàn thành : {{ user.countOrderDone }}
+          </li>
+          <li class="order-item">
+            Số đơn đã bị hủy : {{ user.countOrderCancel }}
+          </li>
+          <li class="order-item">
+            Số đơn đã đang xử lý : {{ user.countOrderProgress }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="infomation">
+      <div class="tabs">
+        <ul>
+          <li
+            class="tabs-item"
+            (click)="activateTab('contact')"
+            [ngClass]="{ active: activeTab === 'contact' }"
+          >
+            <mat-icon>remove_red_eye</mat-icon>
+            <span>Thông Tin Liên Lạc</span>
+          </li>
+
+          <li
+            class="tabs-item"
+            (click)="activateTab('orders')"
+            [ngClass]="{ active: activeTab === 'orders' }"
+          >
+            <mat-icon>supervised_user_circle</mat-icon>
+            <span>Danh Sách Các Đơn Hàng</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tab-content" *ngIf="activeTab === 'contact'">
+        <div class="sub-title">Thông Tin Liên Lạc</div>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <h1 class="label">Số Điện Thoại:</h1>
+            <span class="info">{{ user.phoneNumber }}</span>
+          </li>
+          <li class="contact-item">
+            <h1 class="label">Địa Chỉ Nhà:</h1>
+            <span class="info"
+              >{{ user.location.city }} <br />
+              {{ user.location.address }}</span
+            >
+          </li>
+          <li class="contact-item">
+            <h1 class="label">E-mail:</h1>
+            <span class="info">{{ user.email }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tab-content" *ngIf="activeTab === 'orders'">
+        <div class="sub-title">
+          <span>Danh sách các đơn hàng</span>
+          <select
+            [(ngModel)]="selectedSort"
+            class="select-container"
+            (change)="filterChange()"
+          >
+            <option disabled selected value="">--Sắp Xếp Theo--</option>
+            <option
+              *ngFor="let brand of sortDropDownData"
+              [ngValue]="brand.value"
+            >
+              {{ brand.name }}
+            </option>
+          </select>
+        </div>
+        <table>
+          <tr class="table-title-container">
+            <th class="table-title">Id Đơn Hàng</th>
+            <th class="table-title">Ngày Đặt Hàng</th>
+            <th class="table-title">Tổng Tiền</th>
+            <th class="table-title-center">Trạng Thái Đơn Hàng</th>
+            <th class="table-title-center">Số Điện Thoại</th>
+          </tr>
+          <tr *ngFor="let row of orderlist" class="table-detail-container">
+            <td class="table-td-left">
+              <div
+                class="table-detail-title"
+                [routerLink]="'/order/detail/' + row._id"
+              >
+                {{ row._id }}
+              </div>
+            </td>
+            <td class="table-td-left">
+              <div class="table-detail-title">
+                {{ convertDateInTable(row.createdAt) }}
+              </div>
+            </td>
+            <td class="table-td-left">
+              <div class="table-detail-name">
+                {{ row.amount.toLocaleString() }}
+              </div>
+            </td>
+            <td class="table-td-center">
+              <div class="table-detail-name">
+                <span [ngStyle]="getStatusStylesOrder(row.status)">{{
+                  getStatusTitle(row.status)
+                }}</span>
+              </div>
+            </td>
+            <td class="table-td-center">
+              <div class="table-detail-name">
+                {{ row.phoneNumber }}
+              </div>
+            </td>
+          </tr>
+        </table>
+        <app-paging
+          *ngIf="total !== 0"
+          [total]="total"
+          [numberPerPage]="itemsPerPage"
+          (ChangePage)="handlePageClick($event)"
+          [pagingType]="'bottom'"
+          [currentPage]="pageIndex"
+          class="search-bot-paging"
+        >
+        </app-paging>
+      </div>
+    </section>
+  </div>
+</div>

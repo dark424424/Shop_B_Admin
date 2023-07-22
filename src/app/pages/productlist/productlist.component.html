@@ -1,0 +1,156 @@
+<div class="productlist-container">
+  <div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Tìm Kiếm Theo Tên Sản Phẩm"
+      [(ngModel)]="value"
+    />
+    <mat-icon
+      class="search-button"
+      style="cursor: pointer; font-size: 16; margin: '5px'; color: 'gray'"
+      (click)="onSearchClick()"
+      >search</mat-icon
+    >
+  </div>
+
+  <div class="filter-container">
+    <select
+      [(ngModel)]="selectedBrand"
+      class="select-container"
+      (change)="filterChange()"
+    >
+      <option selected value="">--Lựa Chọn Thương Hiệu--</option>
+      <option *ngFor="let brand of brandDropDownData" [ngValue]="brand.value">
+        {{ brand.name }}
+      </option>
+    </select>
+    <select
+      [(ngModel)]="selectedCategory"
+      class="select-container"
+      (change)="filterChange()"
+    >
+      <option selected value="">--Lựa Chọn Thể Loại--</option>
+      <option
+        *ngFor="let category of catDropDownData"
+        [ngValue]="category.value"
+      >
+        {{ category.name }}
+      </option>
+    </select>
+    <select
+      [(ngModel)]="selectedSort"
+      class="select-container"
+      (change)="filterChange()"
+    >
+      <option selected value="">--Sắp Xếp--</option>
+      <option
+        *ngFor="let category of sortDropDownData"
+        [ngValue]="category.value"
+      >
+        {{ category.name }}
+      </option>
+    </select>
+    <select
+      [(ngModel)]="selectedStock"
+      class="select-container"
+      (change)="filterChange()"
+    >
+      <option selected value="">--Trạng Thái Hàng--</option>
+      <option *ngFor="let brand of stockDropDown" [ngValue]="brand.value">
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="product-container">
+    <div class="title">Danh Sách Sản Phẩm</div>
+    <div class="not-found" *ngIf="total === 0">
+      Không Tìm Thấy Sản Phẩm Phù Hợp
+    </div>
+    <!-- <ul class="product-list">
+      <li class="product-item" *ngFor="let product of productList">
+        <div class="name">
+          <div class="product-title" [routerLink]="'/product/' + product._id">
+            {{ product.title }}
+          </div>
+          <div class="id">ID sản phẩm : {{ product._id }}</div>
+        </div>
+        <div class="body">
+          <div class="img-container">
+            <img [src]="product.img" alt="" class="img" />
+          </div>
+          <div class="price">
+            Giá Tiền : {{ product.price.toLocaleString() }}
+          </div>
+          <div class="count">Số Hàng Hiện Tại : {{ product.inStock }}</div>
+        </div>
+      </li>
+    </ul> -->
+
+    <table>
+      <tr class="table-title-container">
+        <th class="table-title">Hình Ảnh</th>
+        <th class="table-title">Tên Sản Phẩm</th>
+        <th class="table-title">Loại Mặt Hàng</th>
+        <th class="table-title">Hãng Sản Xuất</th>
+        <th class="table-title">Giá Tiền</th>
+        <th class="table-title">Hàng Tồn Kho</th>
+        <th class="table-title">Đã Bán</th>
+        <th class="table-title">Điểm Đánh Giá</th>
+      </tr>
+      <tr *ngFor="let row of productList" class="table-detail-container">
+        <td class="table-td-left">
+          <div class="img-container">
+            <img [src]="row.img" alt="" class="img" />
+          </div>
+        </td>
+        <td class="table-td-left">
+          <div class="table-detail-title" [routerLink]="'/product/' + row._id">
+            {{ row.title }}
+          </div>
+        </td>
+        <td class="table-td-left">
+          <div class="table-detail-title">
+            {{ row.categories }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-title">
+            {{ row.brand }}
+          </div>
+        </td>
+        <td class="table-td-left">
+          <div class="table-detail-name">
+            {{ row.price.toLocaleString() }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.inStock }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.soldCount }}
+          </div>
+        </td>
+        <td class="table-td-center">
+          <div class="table-detail-name">
+            {{ row.reviewPoint }}
+          </div>
+        </td>
+      </tr>
+    </table>
+    <app-paging
+      *ngIf="total !== 0"
+      [total]="total"
+      [numberPerPage]="itemsPerPage"
+      (ChangePage)="handlePageClick($event)"
+      [pagingType]="'bottom'"
+      [currentPage]="pageIndex"
+      class="search-bot-paging"
+    >
+    </app-paging>
+  </div>
+</div>
