@@ -197,6 +197,7 @@ const BrandDropDownList = [
   { value: 'Samsung', name: 'Samsung' },
   { value: 'Garmin', name: 'Garmin' },
   { value: 'monster', name: 'Monster' },
+  { value: 'Asus', name: 'Asus' },
 ];
 
 const InfoList = [
