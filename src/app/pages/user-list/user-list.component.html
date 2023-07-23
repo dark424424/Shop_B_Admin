@@ -87,9 +87,11 @@
             (
             {{
               row.orderInfo.createOrderCount !== 0
-                ? (row.orderInfo.cancelByUserOrderCount /
-                    row.orderInfo.createOrderCount) *
-                  100
+                ? (
+                    (row.orderInfo.cancelByUserOrderCount /
+                      row.orderInfo.createOrderCount) *
+                    100
+                  ).toFixed(2)
                 : 0
             }}%)
           </div>
