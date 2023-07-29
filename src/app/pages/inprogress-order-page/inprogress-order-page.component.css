@@ -28,6 +28,11 @@
 
 }
 
+select {
+    font-size: 16px;
+    margin-left: 20px;
+}
+
 .order-wrapper {
     display: flex;
     flex-direction: column;

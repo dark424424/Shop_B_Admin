@@ -10,7 +10,22 @@
   </div>
 
   <div class="order-container">
-    <div class="title">Danh Sách Đơn Hàng</div>
+    <div class="title">
+      <span>Danh Sách Đơn Hàng</span>
+      <select
+        [(ngModel)]="selectedSort"
+        class="select-container"
+        (change)="filterChange()"
+      >
+        <option selected value="">--Sắp Xếp Theo--</option>
+        <option
+          *ngFor="let category of sortDropDownData"
+          [ngValue]="category.value"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
     <ul class="order-list">
       <li class="order-item" *ngFor="let item of orderListWithNewStatus">
         <div class="top">

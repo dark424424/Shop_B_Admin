@@ -1,9 +1,25 @@
 <div class="user-container">
   <div class="order-body">
-    <div class="title" *ngIf="count > 0">Danh sách các đơn hàng cần duyệt</div>
+    <div class="title" *ngIf="count > 0">
+      <span>Danh sách các đơn hàng cần duyệt</span>
+      <select
+        [(ngModel)]="selectedSort"
+        class="select-container"
+        (change)="filterChange()"
+      >
+        <option selected value="">--Sắp Xếp Theo--</option>
+        <option
+          *ngFor="let category of sortDropDownData"
+          [ngValue]="category.value"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
     <div class="title" *ngIf="count === 0">
       Hiện Tại Không Có Đơn Hàng Nào Cần Duyệt
     </div>
+
     <div class="order-wrapper">
       <ng-container *ngFor="let item of orderListWithNewTitle; let i = index">
         <div class="order-item">

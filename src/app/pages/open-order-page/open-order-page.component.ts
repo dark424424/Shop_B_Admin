@@ -15,6 +15,9 @@ export class OpenOrderPageComponent implements OnInit {
   orderListWithNewTitle: any[] = [];
   count: number = 0;
 
+  sortDropDownData = SortOptionList;
+  selectedSort: string = '';
+
   constructor(
     private apiService: ApiService,
     private msgService: ErrorService
@@ -27,6 +30,7 @@ export class OpenOrderPageComponent implements OnInit {
   private callApi() {
     const payload = {
       status: 'Open',
+      sort: this.selectedSort,
     };
     return this.apiService.getOrderList(payload).pipe(
       tap((response: any) => {
@@ -38,6 +42,10 @@ export class OpenOrderPageComponent implements OnInit {
         }
       })
     );
+  }
+
+  filterChange() {
+    this.callApi().pipe(take(1)).subscribe();
   }
 
   private getTitleOfProduct() {
@@ -88,3 +96,8 @@ export class OpenOrderPageComponent implements OnInit {
     return {};
   }
 }
+
+const SortOptionList = [
+  { value: 'newest', name: 'Mới Nhất' },
+  { value: 'oldest', name: 'Cũ Nhất' },
+];

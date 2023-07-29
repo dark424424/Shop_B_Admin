@@ -19,13 +19,18 @@
     border: 1px solid teal;
 }
 
+
 .title {
     margin-bottom: 40px;
     font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+select {
+    font-size: 16px;
+    margin-left: 20px;
 }
 
 .order-wrapper {

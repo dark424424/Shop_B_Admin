@@ -14,6 +14,9 @@ export class InprogressOrderPageComponent {
   orderListWithNewTitle: any[] = [];
   count: number = 0;
 
+  sortDropDownData = SortOptionList;
+  selectedSort: string = '';
+
   constructor(
     private apiService: ApiService,
     private msgService: ErrorService
@@ -23,9 +26,14 @@ export class InprogressOrderPageComponent {
     this.callApi().pipe(take(1)).subscribe();
   }
 
+  filterChange() {
+    this.callApi().pipe(take(1)).subscribe();
+  }
+
   private callApi() {
     const payload = {
       status: 'Inprogress',
+      sort: this.selectedSort,
     };
     return this.apiService.getOrderList(payload).pipe(
       tap((response: any) => {
@@ -87,3 +95,8 @@ export class InprogressOrderPageComponent {
     return {};
   }
 }
+
+const SortOptionList = [
+  { value: 'newest', name: 'Mới Nhất' },
+  { value: 'oldest', name: 'Cũ Nhất' },
+];

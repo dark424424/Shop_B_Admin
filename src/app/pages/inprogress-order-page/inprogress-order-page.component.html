@@ -1,6 +1,21 @@
 <div class="user-container">
   <div class="order-body">
-    <div class="title" *ngIf="count > 0">Danh sách các đơn hàng đang xử lý</div>
+    <div class="title" *ngIf="count > 0">
+      <span>Danh sách các đơn hàng đang xử lý</span>
+      <select
+        [(ngModel)]="selectedSort"
+        class="select-container"
+        (change)="filterChange()"
+      >
+        <option selected value="">--Sắp Xếp Theo--</option>
+        <option
+          *ngFor="let category of sortDropDownData"
+          [ngValue]="category.value"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
     <div class="title" *ngIf="count === 0">
       Hiện Tại Không Có Đơn Hàng Nào Đang Xử Lý
     </div>

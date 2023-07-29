@@ -21,12 +21,19 @@ export class HistoryOrderPageComponent implements OnInit {
 
   statusDropDown = STATUS_DROPDOWN;
 
+  sortDropDownData = SortOptionList;
+  selectedSort: string = '';
+
   constructor(
     private apiService: ApiService,
     private msgService: ErrorService
   ) {}
 
   ngOnInit(): void {
+    this.callApi().pipe(take(1)).subscribe();
+  }
+
+  filterChange() {
     this.callApi().pipe(take(1)).subscribe();
   }
 
@@ -45,6 +52,7 @@ export class HistoryOrderPageComponent implements OnInit {
       status: this.getStatusArray(),
       pageIndex: this.pageIndex,
       itemsPerPage: this.itemsPerPage,
+      sort: this.selectedSort,
     };
     return this.apiService.getOrderListWithPaging(payload).pipe(
       tap((response: any) => {
@@ -130,4 +138,9 @@ const STATUS_DROPDOWN = [
     value: '3',
     name: 'Tất Cả Lịch Sử',
   },
+];
+
+const SortOptionList = [
+  { value: 'newest', name: 'Mới Nhất' },
+  { value: 'oldest', name: 'Cũ Nhất' },
 ];
