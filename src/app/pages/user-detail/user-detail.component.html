@@ -145,9 +145,10 @@
             </td>
             <td class="table-td-center">
               <div class="table-detail-name">
-                <span [ngStyle]="getStatusStylesOrder(row.status)">{{
-                  getStatusTitle(row.status)
-                }}</span>
+                <span
+                  [ngStyle]="getStatusStylesOrder(row.status, row.cancelType)"
+                  >{{ getStatusTitle(row.status, row.cancelType) }}</span
+                >
               </div>
             </td>
             <td class="table-td-center">

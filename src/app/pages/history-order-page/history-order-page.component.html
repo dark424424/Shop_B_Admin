@@ -51,6 +51,13 @@
               {{ item.statusTitle }}
             </div>
           </div>
+
+          <div class="status" *ngIf="item?.status === 'Cancelled'">
+            <span>Lý do hủy đơn: </span>
+            <div class="order-status" [ngStyle]="getStatusStyles(item.status)">
+              {{ item.cancelType === 0 ? "Từ Cửa Hàng" : "Do Khách Hàng" }}
+            </div>
+          </div>
         </div>
       </li>
     </ul>

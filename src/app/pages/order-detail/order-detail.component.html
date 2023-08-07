@@ -96,6 +96,10 @@
         </div>
       </div>
       <div *ngSwitchCase="'Cancelled'" class="footer-container">
+        <div class="verify-container">
+          Loại nguyên nhân hủy đơn :
+          {{ order.cancelType === 0 ? "Từ Cửa Hàng" : "Do Khách Hàng" }}
+        </div>
         <div class="verify-container">Lý Do Hủy : {{ order.cancelReason }}</div>
       </div>
     </div>

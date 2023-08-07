@@ -138,10 +138,15 @@ export class UserDetailComponent {
     );
   }
 
-  getStatusTitle(status: string): string {
+  getStatusTitle(status: string, cancelType: number): string {
     switch (status) {
-      case 'Cancelled':
-        return 'Bị Hủy';
+      case 'Cancelled': {
+        if (cancelType === 0) {
+          return 'Hủy Do Cửa Hàng';
+        } else {
+          return 'Hủy Do Khách Hàng';
+        }
+      }
       case 'Done':
         return 'Hoàn Thành';
       case 'Open':
@@ -153,7 +158,7 @@ export class UserDetailComponent {
     }
   }
 
-  getStatusStylesOrder(status: string) {
+  getStatusStylesOrder(status: string, cancelType: number) {
     if (status === 'Inprogress') {
       return { 'background-color': 'blue' };
     } else if (status === 'Open') {
