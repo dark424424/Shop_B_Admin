@@ -8,6 +8,6 @@ export const environment = {
     messagingSenderId: '301121654012',
     appId: '1:301121654012:web:c3e851f65c2e664aa65b79',
   },
-  // apiUrl: 'http://localhost:5000',
-  apiUrl: 'https://longthesis.onrender.com',
+  apiUrl: 'http://localhost:5000',
+  // apiUrl: 'https://longthesis.onrender.com',
 };

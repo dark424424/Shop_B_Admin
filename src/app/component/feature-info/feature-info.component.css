@@ -28,7 +28,7 @@
 .money {
     font-size: 30px;
     font-weight: bold;
-    max-width: 80%;
+    max-width: 70%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

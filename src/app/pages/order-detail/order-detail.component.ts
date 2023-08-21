@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -25,6 +26,7 @@ export class OrderDetailComponent {
   productImg: any;
 
   dialogRef: MatDialogRef<ReasonCancelComponent> | undefined;
+  fileError: any;
 
   constructor(
     private errorService: ErrorService,
@@ -32,7 +34,8 @@ export class OrderDetailComponent {
     private apiservice: ApiService,
     private fireStorage: AngularFireStorage,
     private loadingService: LoadingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -134,6 +137,9 @@ export class OrderDetailComponent {
       tap((response: any) => {
         if (response.resultCode === 0) {
           this.errorService.startSuccess('Duyệt Đơn Hàng Thành Công');
+          setTimeout(() => {
+            this.callApi();
+          }, 500);
         } else {
           this.errorService.start(response.message);
         }
@@ -142,6 +148,7 @@ export class OrderDetailComponent {
   }
 
   async doneOrder() {
+    this.fileError = null;
     if (this.FileImg) {
       this.loadingService.start();
       const timestamp = new Date().getTime();
@@ -156,6 +163,7 @@ export class OrderDetailComponent {
       };
       this.doneApi(payload).pipe(take(1)).subscribe();
     } else {
+      this.fileError = 'Vui lòng nhập file bằng chứng giao hàng';
     }
   }
 
@@ -163,8 +171,11 @@ export class OrderDetailComponent {
     return this.apiservice.doneOrder(payload).pipe(
       tap((response: any) => {
         if (response.resultCode === 0) {
-          this.errorService.startSuccess('Hoàn Thành Đơn Thành Công');
           this.loadingService.finish();
+          this.errorService.startSuccess('Hoàn Thành Đơn Thành Công');
+          setTimeout(() => {
+            this.callApi();
+          }, 500);
         } else {
           this.errorService.start(response.message);
           this.loadingService.finish();
@@ -196,8 +207,11 @@ export class OrderDetailComponent {
     return this.apiservice.cancelOrder(payload).pipe(
       tap((response: any) => {
         if (response.resultCode === 0) {
-          this.errorService.startSuccess('Hủy Đơn Thành Công');
           this.loadingService.finish();
+          this.errorService.startSuccess('Hủy Đơn Thành Công');
+          setTimeout(() => {
+            this.callApi();
+          }, 500);
         } else {
           this.errorService.start(response.message);
           this.loadingService.finish();

@@ -9,6 +9,11 @@ h1, h2, h3, p, ul, li {
     padding: 0;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
 .order-container {
     padding: 20px;
     margin: 20px;

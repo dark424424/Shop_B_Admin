@@ -14,8 +14,6 @@ import { Chart } from 'angular-highcharts';
   styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent {
-  title = 'angular-charts-youtube';
-
   @Input() incomeList: any[];
 
   @Input() categoryRevenue: any[];

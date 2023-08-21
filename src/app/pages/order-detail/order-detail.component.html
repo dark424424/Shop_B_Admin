@@ -79,6 +79,9 @@
           <label for="file-input" class="file-input-label"
             >Hãy Chọn Một File</label
           >
+          <div *ngIf="fileError" class="error-message">
+            {{ fileError }}
+          </div>
           <div class="img-container" *ngIf="productImg">
             <img [src]="productImg" *ngIf="productImg" class="img" />
           </div>

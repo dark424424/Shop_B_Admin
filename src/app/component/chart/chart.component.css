@@ -32,7 +32,14 @@
 .right-dropdown {
     position: absolute;
     top: 5px;
-    left: 5px;
+    left: 250px;
+    padding: 5px;
+}
+
+.chart-dropdown {
+    position: absolute;
+    top: 5px;
+    right: 250px;
     padding: 5px;
 }
 
